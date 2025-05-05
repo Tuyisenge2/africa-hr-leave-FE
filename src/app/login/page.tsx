@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
@@ -20,7 +20,7 @@ import { useForm } from "react-hook-form";
 import { authService } from "@/services/authService";
 import { JwtService } from "@/services/jwtService";
 
-export default function Login() {
+function LoginContent() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { loading: authLoading, error: authError } = useAppSelector(
@@ -54,13 +54,10 @@ export default function Login() {
   }, [dispatch, router, token]);
 
   const handleGoogleSignIn = async () => {
-    try{
-    dispatch(googleSignInStart());
-    authService.googleSignIn();
-     
-} catch (error) {
-  
-}
+    try {
+      dispatch(googleSignInStart());
+      authService.googleSignIn();
+    } catch (error) {}
   };
 
   return (
@@ -142,5 +139,22 @@ export default function Login() {
         />
       </div>
     </div>
+  );
+}
+
+export default function Login() {
+  return (
+    <Suspense
+      fallback={
+        <div className='min-h-screen flex items-center justify-center bg-gray-50'>
+          <div className='text-center'>
+            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4'></div>
+            <p className='text-gray-600'>Loading...</p>
+          </div>
+        </div>
+      }
+    >
+      <LoginContent />
+    </Suspense>
   );
 }

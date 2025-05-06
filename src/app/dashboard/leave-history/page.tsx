@@ -11,7 +11,6 @@ export default function LeaveHistory() {
     (state) => state.leaveHistory
   );
   const [currentUserEmail, setCurrentUserEmail] = useState<string>("");
-
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -34,7 +33,6 @@ export default function LeaveHistory() {
         }
       }
     } catch (error) {
-      console.log("errrrrrrrrrrrrrrrrrrr");
     }
   }, [dispatch, data.length, router]);
 

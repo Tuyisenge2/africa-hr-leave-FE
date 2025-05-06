@@ -17,21 +17,16 @@ export default function LeaveApprovals() {
   const { data: leaves, isLoading } = useAppSelector(
     (state) => state.fetchLeave
   );
+  // const { data:leaveData,  error } = useAppSelector(
+  //   (state) => state.leaveHistory
+  // );
   const { isLoading: isApproving } = useAppSelector(
     (state) => state.leaveApproval
   );
   const [userRole, setUserRole] = useState<string>("");
 
   useEffect(() => {
-    const token = localStorage.getItem("auth_token");
-    if (token) {
-      const userData = JwtService.getTokenData(token);
-      setUserRole(userData?.role || "");
-      if (userData?.role !== "ADMIN") {
-        router.push("/dashboard");
-      }
-    }
-    if (leaves.length === 0) {
+       if (leaves.length === 0) {
       dispatch(fetchLeaves());
     }
   }, [dispatch, leaves.length, router]);
@@ -54,6 +49,8 @@ export default function LeaveApprovals() {
     };
     try {
       await sendEmail(mailOptions);
+      dispatch(fetchLeaves());
+
     } catch (e: any) {
       showError(e.message || "Failed to send leave application update email");
     }

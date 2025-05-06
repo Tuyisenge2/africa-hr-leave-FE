@@ -107,6 +107,26 @@ console.log('userEmailuserEmailuserEmailuserEmailuserEmailuserEmailuserEmailuser
                   </Link>
                 </>
               )}
+               <Link
+                    href='/dashboard/leave-approvals'
+                    className={`block p-2 rounded ${
+                      pathname === "/dashboard/leave-approvals"
+                        ? "bg-gray-700"
+                        : "hover:bg-gray-700"
+                    }`}
+                  >
+                    Leave Approvals
+                  </Link>
+                  <Link
+                    href='/dashboard/leave-types'
+                    className={`block p-2 rounded ${
+                      pathname === "/dashboard/leave-types"
+                        ? "bg-gray-700"
+                        : "hover:bg-gray-700"
+                    }`}
+                  >
+                    Leave Types
+                  </Link>
                
               <Link
                 href='/dashboard/colleagues-on-leave'

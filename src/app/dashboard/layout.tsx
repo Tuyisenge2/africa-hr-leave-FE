@@ -39,12 +39,11 @@ export default function DashboardLayout({
     return null;
   }
   const userAdmin =()=>{
-    if(userRole === "ADMIN" || userEmail === "tuyisengetito3@gmail.com"){
+    if(userRole === "ADMIN" || userEmail === "tuyisengetito0@gmail.com"){
       return true
     }
     return false
   }
-console.log('userEmailuserEmailuserEmailuserEmailuserEmailuserEmailuserEmailuserEmail',userEmail ,userRole)
   return (
     <ProtectedRoute>
       <div className='flex min-h-screen' suppressHydrationWarning>
@@ -107,26 +106,6 @@ console.log('userEmailuserEmailuserEmailuserEmailuserEmailuserEmailuserEmailuser
                   </Link>
                 </>
               )}
-               <Link
-                    href='/dashboard/leave-approvals'
-                    className={`block p-2 rounded ${
-                      pathname === "/dashboard/leave-approvals"
-                        ? "bg-gray-700"
-                        : "hover:bg-gray-700"
-                    }`}
-                  >
-                    Leave Approvals
-                  </Link>
-                  <Link
-                    href='/dashboard/leave-types'
-                    className={`block p-2 rounded ${
-                      pathname === "/dashboard/leave-types"
-                        ? "bg-gray-700"
-                        : "hover:bg-gray-700"
-                    }`}
-                  >
-                    Leave Types
-                  </Link>
                
               <Link
                 href='/dashboard/colleagues-on-leave'
